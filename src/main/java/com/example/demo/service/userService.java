@@ -41,7 +41,7 @@ public class userService {
             user.setRoles(Arrays.asList("USER"));
             userRepository.save(user);
         }catch(Exception e){
-            logger.info("hahahaha");
+            logger.error("Error saving user",e);
             return false;
         }
         return true;
