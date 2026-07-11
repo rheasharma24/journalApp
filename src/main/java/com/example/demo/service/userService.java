@@ -40,11 +40,11 @@ public class userService {
             user.setPassword( passwordEncoder.encode(user.getPassword()));
             user.setRoles(Arrays.asList("USER"));
             userRepository.save(user);
+            return true;
         }catch(Exception e){
-            logger.error("Error saving user",e);
-            return false;
+            e.printStackTrace();
+           return false;
         }
-        return true;
     }
     public void saveAdmin(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
