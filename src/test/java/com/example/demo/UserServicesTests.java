@@ -21,6 +21,7 @@ public class UserServicesTests {
 
    @Autowired
     private userRepository userRepository;
+
    @Autowired
    private userService userService;
 
@@ -29,6 +30,8 @@ public class UserServicesTests {
    public void setUp() {
 
    }
+
+   @Disabled("Uses real MongoDB Atlas")
 
     @ParameterizedTest
     @ArgumentsSource(UserArgumentsProvider.class)
