@@ -32,7 +32,6 @@ public class UserServicesTests {
    }
 
    @Disabled("Uses real MongoDB Atlas")
-
     @ParameterizedTest
     @ArgumentsSource(UserArgumentsProvider.class)
     public void testFindByUsername(User user) {
