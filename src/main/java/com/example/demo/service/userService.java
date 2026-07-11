@@ -36,15 +36,10 @@ public class userService {
         userRepository.save(user);
     }
     public  boolean saveNewEntry(User user){
-        try{
             user.setPassword( passwordEncoder.encode(user.getPassword()));
             user.setRoles(Arrays.asList("USER"));
             userRepository.save(user);
             return true;
-        }catch(Exception e){
-            e.printStackTrace();
-           return false;
-        }
     }
     public void saveAdmin(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
