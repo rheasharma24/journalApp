@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.cache.AppCache;
 import com.example.demo.entites.User;
+import com.example.demo.repository.ConfigJournalAppRepository;
 import com.example.demo.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,9 @@ public class AdminController {
     @Autowired
     private userService userService;
 
+    @Autowired
+    private AppCache appCache;
+
     @GetMapping("/all-users")
     public ResponseEntity<List<User>> getAllUsers() {
    List<User> all=userService.getAll();
@@ -28,6 +33,11 @@ public class AdminController {
   @PostMapping("/create-admin-user")
     public void createUser(@RequestBody User user) {
         userService.saveAdmin(user);
+  }
+
+  @GetMapping("/clear-app-cache")
+  public void clearAppCache(){
+      appCache.intit();
   }
 
 }

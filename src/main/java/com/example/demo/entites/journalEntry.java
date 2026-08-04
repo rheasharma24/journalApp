@@ -1,5 +1,6 @@
 package com.example.demo.entites;
 
+import com.example.demo.enums.Sentiment;
 import lombok.*;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -9,12 +10,6 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Document(collection = "journal_entries")
-//@Getter
-//@Setter
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@EqualsAndHashCode(callSuper=false)
-//@Builder
 @Data
 @NoArgsConstructor
 public class journalEntry {
@@ -23,7 +18,6 @@ public class journalEntry {
     @NonNull
     private String title;
     private String content;
-    public LocalDateTime date;
-
-
+    private LocalDateTime date;
+    private Sentiment sentiment;
 }

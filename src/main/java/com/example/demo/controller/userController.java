@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
+import com.example.demo.api.response.WeatherResponse;
 import com.example.demo.entites.User;
 
 
 import com.example.demo.repository.userRepository;
+import com.example.demo.service.WeatherService;
 import com.example.demo.service.userService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,15 +20,20 @@ import java.util.*;
 @RestController
 @RequestMapping("/user")
 public class userController {
+
     @Autowired
     private userService userService;
+
     @Autowired
     private userRepository userRepository;
 
-    @GetMapping
-    public List<User> getAllUser(){
-        return userService.getAll();
-    }
+    @Autowired
+    private WeatherService weatherService;
+
+   // @GetMapping
+   // public List<User> getAllUser(){
+     //   return userService.getAll();
+   // }
     @PostMapping
     public ResponseEntity<?> createUser(@RequestBody User user) {
         userService.saveUser(user);
@@ -52,11 +59,21 @@ public class userController {
         return new ResponseEntity<>( HttpStatus.NO_CONTENT);
     }
 
+    @DeleteMapping
     public ResponseEntity<?> deleteUser(){
         Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
         userRepository.deleteByUsername(authentication.getName());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
     }
 
+    @GetMapping()
+    public ResponseEntity<?> greeting(){
+        Authentication authentication=SecurityContextHolder.getContext().getAuthentication();
+        WeatherResponse weatherResponse=weatherService.getWeather("Ranchi");
+        String greeting="";
+        if(weatherResponse!=null){
+            greeting=" , weather feels like "+weatherResponse.getCurrent().getFeelslike();
+        }
+        return new ResponseEntity<>("Hi "+authentication.getName() + greeting,HttpStatus.OK);
+    }
 }

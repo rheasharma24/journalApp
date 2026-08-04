@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.Service;
 
 import com.example.demo.entites.User;
 import org.junit.jupiter.api.extension.ExtensionContext;

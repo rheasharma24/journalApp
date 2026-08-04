@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.Service;
 
 //import com.example.demo.repository.userRepository;
 import com.example.demo.entites.User;
@@ -6,13 +6,11 @@ import com.example.demo.repository.userRepository;
 import com.example.demo.service.userService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.junit.jupiter.api.Assertions.*;
 

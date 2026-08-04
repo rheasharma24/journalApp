@@ -1,3 +1,36 @@
 spring:
-  profiles:
-    active: prod
+  redis:
+    host: resplendent-frame-yak-28075.db.redis.io:14645
+    port: 14645
+    password: Ranchi@123
+
+
+
+
+  data:
+    mongodb:
+      uri: mongodb+srv://RIYA:Riya6789@cluster0.rjrbk8f.mongodb.net/_journaldb?retryWrites=true&w=majority&appName=Cluster0
+      database: _journaldb
+      auto-index-creation: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: btech60064.24bitmesra@gmail.com
+    password: svoaricmijkrjzup
+    properties:
+     mail:
+       smtp:
+         auth: true
+         starttls:
+             enable: true
+
+
+
+server:
+  port: 8080
+  servlet:
+    context-path: /_journal
+
+weather:
+  api:
+    key: 9779cdaacea43aeafc999b5f9ef3f763
