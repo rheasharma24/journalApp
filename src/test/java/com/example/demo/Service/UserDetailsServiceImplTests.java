@@ -31,7 +31,12 @@ public class UserDetailsServiceImplTests {
 
     @Test
     void loadUserByUsername(){
-        when(userRepository.findByUsername(ArgumentMatchers.anyString())).thenReturn(User.builder().username("shyam").password("vjhjnbjn").roles(new ArrayList<>()).build());
+        when(userRepository.findByUsername(ArgumentMatchers.anyString())).thenReturn(
+                User.builder()
+                        .username("shyam")
+                        .email("shyam@gmail.com")
+                .password("vjhjnbjn")
+                        .roles(new ArrayList<>()).build());
         UserDetails user=userDetailsService.loadUserByUsername("shyam");
         Assertions.assertNotNull(user);
     }
