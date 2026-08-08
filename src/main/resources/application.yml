@@ -34,3 +34,7 @@ server:
 weather:
   api:
     key: 9779cdaacea43aeafc999b5f9ef3f763
+
+
+jwt:
+  secret: TaK+HaV^uvCHEFsEVfypW#7g9^k*Z8$V

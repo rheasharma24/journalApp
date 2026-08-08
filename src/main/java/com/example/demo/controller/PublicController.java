@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.DTO.UserSignupDTO;
+import com.example.demo.DTO.UserloginDTO;
 import com.example.demo.entites.User;
 import com.example.demo.service.UserDetailsServiceImpl;
 import com.example.demo.service.userService;
@@ -15,6 +17,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -33,6 +37,7 @@ public class PublicController {
     @Autowired
     private JwtUtil jwtUtil;
 
+
     public PublicController() {
         System.out.println("PublicController Loaded");
     }
@@ -43,15 +48,20 @@ public class PublicController {
     }
 
     @PostMapping("/signup")
-    public void signup(@RequestBody User user) {
+    public void signup(@RequestBody UserSignupDTO userDto) {
+        User user = new User();
+        user.setUsername(userDto.getUsername());
+        user.setEmail(userDto.getEmail());
+        user.setPassword(userDto.getPassword());
+        user.setRoles(List.of("USER"));
         userService.saveNewEntry(user);
     }
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User user) {
+    public ResponseEntity<String> login(@RequestBody UserloginDTO userDto) {
         try{
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
-            UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
+                    new UsernamePasswordAuthenticationToken(userDto.getUsername(), userDto.getPassword()));
+            UserDetails userDetails = userDetailsService.loadUserByUsername(userDto.getUsername());
               String jwt = jwtUtil.generateToken(userDetails.getUsername());
               return new ResponseEntity<>(jwt, HttpStatus.OK);
         } catch (Exception e) {
