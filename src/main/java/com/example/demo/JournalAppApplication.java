@@ -24,13 +24,6 @@ import org.springframework.web.client.RestTemplate;
 public class JournalAppApplication {
 
 
-	@Value("${MONGODB_URI:NOT_FOUND}")
-	private String mongoUri;
-
-	@PostConstruct
-	public void printUri() {
-		System.out.println("MONGODB_URI = " + mongoUri);
-	}
 	public static void main(String[] args) {
 		SpringApplication.run(JournalAppApplication.class, args);
 	}
